@@ -97,7 +97,11 @@
 </fieldset>
 
 <script>
-  // code here for above problem
+  var button = document.getElementById('popup-alert-button');
+
+  // add event handler to run an anonymous function that alerts text
+  // upon clicking the button
+  button.addEventListener('click', function() { return alert("I am an alert!")});
 </script>
 
 
@@ -115,7 +119,16 @@
 </fieldset>
 
 <script>
-  // code here for above-problem
+  var greeting = document.getElementById("message-to-change");
+  var button = document.getElementById("change-hello-to-goodbye-button");
+
+  //create function to change text using innerText
+  function changer() {
+    greeting.innerText = "Goodbye";
+  }
+
+  //run changer function when button pressed
+  button.addEventListener('click', changer);
 </script>
 
 <div class="hint">
@@ -144,7 +157,16 @@
 </fieldset>
 
 <script>
-  // code here for above problem
+  var form = document.getElementById("prevent-form-submission-form");
+
+  // prevent default submit event and pop an alert instead upon submit
+  function alertBox(evt) {
+    alert("Yet another alert box!");
+    evt.preventDefault();
+  }
+
+  form.addEventListener('submit', alertBox);
+
 </script>
 
 <div class="hint">
@@ -176,6 +198,22 @@
 <script>
 //  Here's a stub of a function you can use!
 
+  var button = document.getElementById("reverse-string-button");
+   
+  // original string is the button value, create a new element that
+  // starts as an empty string and concatenates the origin string
+  // starting with the last letter and looping backwards
+  function reverseString() {
+    var message = button['value'];
+    var newMsg = "";
+    for (var i = message.length-1; i >= 0; i--) {
+      newMsg += message[i];
+    }
+    alert(newMsg);
+  }
+
+  button.addEventListener('click', reverseString);
+
 //  function reverseString() {
 //    var msg = "Porcupines are cute";
 //
@@ -201,7 +239,7 @@
 <p>You should use jQuery for these parts.</p>
 <p>We didn't include jQuery in this document, though&mdash;so your first task is to include it!</p>
 
-
+<script src="https://code.jquery.com/jquery.js"></script>
 
 <h3>Finding the Button</h3>
 <p>
@@ -213,7 +251,9 @@
 </fieldset>
 
 <script>
-  // code here for above problem
+  // select elements of the class "tricky-to-find" and upon click, 
+  // pop an alert
+  $('.tricky-to-find').click(function() { alert("I am an alert!")});
 </script>
 
 <div class="hint">
@@ -240,7 +280,9 @@
 </fieldset>
 
 <script>
-  // put your code here
+  //change the attribute of the kitten image to a puppy image upon
+  //double click
+  $('#kittenz-rule').dblclick(function() { $('#kittenz-rule').attr('src', 'http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg')});
 </script>
 
 <div class="hint">
@@ -272,9 +314,14 @@
   <input type="button" id="make-a-porcupine" value="I Want a Porcupine!">
 </fieldset>
 
-<script>
-  // put your code here
-</script>
+// <script>
+  //delay animation by 1 second
+  setTimeout(porcupining, 1000);
+  //animate porcupine image after pushing porcupine button via slideDown over 4 seconds
+  function porcupining() {
+    $('#make-a-porcupine').click($('#cute-porcupine-image').slideDown(4000));
+  };
+// </script>
 
 <div class="hint">
   <div>
@@ -315,9 +362,20 @@
   <div id="agreeable-text"></div>
 </fieldset>
 
-<script>
-  // put your code here
-</script>
+// <script>
+//   //variable food is going to be the value of what the user input
+//   var food = $('#favorite-food-input').val();
+
+//   //prevent submit, and display favorite food in agreeable-text div 
+//   //when agreeable-form is submitted
+//   $('#agreeable-form').submit(function(event) {
+//     $('#agreeable-text').html(food);
+//     event.preventDefault();
+//   });
+
+//   console.log(food);
+
+// </script>
 
 <div class="hint">
   <div>
@@ -345,7 +403,28 @@
 </fieldset>
 
 <script>
-  // put your code here
+  //call function playGame upon clicking button
+  $('#play-guessing-game').click(playGame);
+
+  function playGame() {
+    var answer = Math.floor(Math.random() * 100) + 1;
+    //do the loop with alerts and prompts, while the userGuess is not
+    //correct
+    do {
+      var userGuess = prompt("Guess a random integer from 1 to 100");
+      parseInt(userGuess);
+      // console.log(userGuess);
+      if (userGuess === answer) {
+        alert("Congratulations!");
+      } else if (userGuess > answer) {
+        alert("Too high.  Guess again.");
+        continue;
+      } else {
+        alert("Too low.  Guess again.");
+        continue;
+      }
+    } while (userGuess != answer)
+  };
 </script>
 
 <div class="hint">
